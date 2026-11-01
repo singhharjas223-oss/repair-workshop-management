@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repair Workshop Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Repair Workshop Management</h1>
+  </header>
+
+  <main>
+    <h2>Workshop Dashboard</h2>
+    <p>Manage repair requests from intake to completion.</p>
+    <section class="dashboard-summary" aria-label="Dashboard summary">
+      <p class="summary-card">
+        <span class="summary-label">Total repair tickets</span>
+        <strong id="ticket-count">0</strong>
+      </p>
+    </section>
+    <section>
+        <h2>New Repair Request</h2>
+      
+        <form id="repair-form">
+          <label for="customer-name">Customer name</label>
+          <input id="customer-name" name="customerName" type="text" required>
+      
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" required>
+      
+          <label for="device">Device</label>
+          <input id="device" name="device" type="text" required>
+      
+          <label for="problem">Problem description</label>
+          <textarea id="problem" name="problem" rows="4" required></textarea>
+          <label for="diagnosis">Technician diagnosis</label>
+          <textarea id="diagnosis" name="diagnosis" rows="3"></textarea>
+                <label for="parts-cost">Parts cost</label>
+                <input id="parts-cost" name="partsCost" type="number" min="0" step="0.01" value="0"> 
+                <label for="labour-cost">Labour cost</label>
+                <input id="labour-cost" name="labourCost" type="number" min="0" step="0.01" value="0">        
+                <!-- <label for="total-cost">Total cost</label> -->
+                <label for="approval">Estimate approval</label>
+                <select id="approval" name="approval">
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                </select>
+                <label for="parts-used">Parts used</label>
+                <input id="parts-used" name="partsUsed" type="text" placeholder="For example: charging port">
+            
+          <button type="submit">Create repair request</button>
+        </form>
+      </section>
+      <section>
+        <h2>Service Tickets</h2>
+        <label for="ticket-search">Search tickets</label>
+        <input id="ticket-search" type="search" placeholder="Ticket ID, customer, or device">
+        <label for="status-filter">Filter by status</label>
+<select id="status-filter">
+  <option value="">All statuses</option>
+  <option value="Received">Received</option>
+  <option value="Diagnosed">Diagnosed</option>
+  <option value="Awaiting Approval">Awaiting Approval</option>
+  <option value="In Repair">In Repair</option>
+  <option value="Completed">Completed</option>
+</select>
+        <ul id="ticket-list"></ul>
+        <p id="form-message" role="status"></p>
+      </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

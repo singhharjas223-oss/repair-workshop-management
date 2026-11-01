@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    color: #1f2937;
+    background: #f3f4f6;
+  }
+  
+  header,
+  main {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 10px;
+  }
+  
+  h1,
+  h2 {
+    margin-top: 0;
+  }
+
+.dashboard-summary {
+  margin: 0 0 24px;
+}
+
+.summary-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 16px 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.summary-label {
+  color: #475569;
+}
+
+#ticket-count {
+  font-size: 1.75rem;
+  color: #17324d;
+}
+  form {
+    display: grid;
+    gap: 10px;
+  }
+  
+  input,
+  textarea,
+  button {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+  }
+  
+  input,
+  textarea {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+  }
+  
+  button {
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    background: #2563eb;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #1d4ed8;
+  }
+  body {
+    color: #172033;
+    background: #eef2f7;
+  }
+  
+  header {
+    color: #ffffff;
+    background: #17324d;
+  }
+  
+  main {
+    background: #ffffff;
+  }
+  
+  button {
+    background: #0f766e;
+  }
+  
+  button:hover {
+    background: #115e59;
+  }
+  input,
+textarea,
+select {
+  background: #f8fafc;
+  color: #172033;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #0f766e;
+  border-color: #0f766e;
+}
+
+section {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f8fafc;
+    border: 1px solid #dbe3ec;
+    border-radius: 10px;
+  }
+  
+  #ticket-list {
+    padding-left: 20px;
+  }
+  
+  #ticket-list li {
+    margin: 12px 0;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #dbe3ec;
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+
+  form label {
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    color: #172033;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid #0f766e;
+    border-color: #0f766e;
+  }
+  
+  button {
+    margin-top: 12px;
+    padding: 12px 16px;
+    font: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background: #0f766e;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #115e59;
+  }
