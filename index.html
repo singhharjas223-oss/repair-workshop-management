@@ -3,74 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Repair Workshop Management</title>
+  <meta name="theme-color" content="#102b3f">
+  <title>Repair Workshop Management System</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Repair Workshop Management</h1>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Repair Workshop home">
+      <span class="brand-mark">RW</span>
+      <span><strong>Repair Workshop</strong><small>Service portal</small></span>
+    </a>
+    <button id="home-button" class="text-button" type="button" hidden>← Change role</button>
   </header>
 
-  <main>
-    <h2>Workshop Dashboard</h2>
-    <p>Manage repair requests from intake to completion.</p>
-    <section class="dashboard-summary" aria-label="Dashboard summary">
-      <p class="summary-card">
-        <span class="summary-label">Total repair tickets</span>
-        <strong id="ticket-count">0</strong>
-      </p>
+  <main class="app-shell">
+    <section id="home-view" class="view role-home">
+      <div class="intro-copy">
+        <p class="eyebrow">REPAIR WORKSHOP MANAGEMENT</p>
+        <h1>Good repairs start with a clear process.</h1>
+        <p>Thoughtful repairs, clear estimates, and progress you can follow at every step.</p>
+      </div>
+      <section class="reviews-panel"><p class="eyebrow">CUSTOMER STORIES</p><h2>Trusted with the devices you depend on.</h2><div class="reviews-grid"><article><strong>★★★★★</strong><p>“They explained the repair and cost before starting. I always knew what was happening.”</p><small>— Sample customer review</small></article><article><strong>★★★★★</strong><p>“Quick updates and a smooth pickup. The whole process felt simple.”</p><small>— Sample customer review</small></article><article><strong>★★★★★</strong><p>“Clear communication from diagnosis through completion.”</p><small>— Sample customer review</small></article></div><small class="demo-note">Sample reviews for project demonstration.</small></section>
+      <div class="role-grid" aria-label="Choose a workspace">
+        <button class="role-card" type="button" data-open-role="customer">
+          <span class="role-icon">01</span><span class="role-card-title">Customer</span>
+          <span>Request a repair, review an estimate, and follow progress.</span><span class="role-arrow">Open portal →</span>
+        </button>
+        <button class="role-card" type="button" data-open-role="technician">
+          <span class="role-icon">02</span><span class="role-card-title">Technician</span>
+          <span>Diagnose devices, prepare estimates, and report progress.</span><span class="role-arrow">Open workspace →</span>
+        </button>
+        <button class="role-card" type="button" data-open-role="admin">
+          <span class="role-icon">03</span><span class="role-card-title">Admin</span>
+          <span>Review tickets, customers, repair stages, and costs.</span><span class="role-arrow">Open dashboard →</span>
+        </button>
+      </div>
+      <p class="demo-note">Class project demo: records are stored in this browser.</p>
     </section>
-    <section>
-        <h2>New Repair Request</h2>
-      
-        <form id="repair-form">
-          <label for="customer-name">Customer name</label>
-          <input id="customer-name" name="customerName" type="text" required>
-      
-          <label for="phone">Phone number</label>
-          <input id="phone" name="phone" type="tel" required>
-      
-          <label for="device">Device</label>
-          <input id="device" name="device" type="text" required>
-      
-          <label for="problem">Problem description</label>
-          <textarea id="problem" name="problem" rows="4" required></textarea>
-          <label for="diagnosis">Technician diagnosis</label>
-          <textarea id="diagnosis" name="diagnosis" rows="3"></textarea>
-                <label for="parts-cost">Parts cost</label>
-                <input id="parts-cost" name="partsCost" type="number" min="0" step="0.01" value="0"> 
-                <label for="labour-cost">Labour cost</label>
-                <input id="labour-cost" name="labourCost" type="number" min="0" step="0.01" value="0">        
-                <!-- <label for="total-cost">Total cost</label> -->
-                <label for="approval">Estimate approval</label>
-                <select id="approval" name="approval">
-                <option value="Pending">Pending</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
-                </select>
-                <label for="parts-used">Parts used</label>
-                <input id="parts-used" name="partsUsed" type="text" placeholder="For example: charging port">
-            
-          <button type="submit">Create repair request</button>
-        </form>
+
+    <section id="customer-view" class="view" hidden>
+      <div class="page-heading"><div><p class="eyebrow">CUSTOMER PORTAL</p><h1>Your repair, clearly tracked.</h1><p>Submit a device for service or check a ticket you already have.</p></div></div>
+      <div class="two-column">
+        <section class="panel">
+          <div class="section-heading"><div><p class="eyebrow">SERVICE INTAKE</p><h2>Request a repair</h2></div><span class="step-tag">NEW TICKET</span></div>
+          <form id="customer-request-form" class="form-grid">
+            <label>Customer name<input name="customerName" autocomplete="name" required></label>
+            <label>Phone number<input name="phone" type="tel" autocomplete="tel" required></label>
+            <label class="full-width">Email address <span class="muted">(optional)</span><input name="email" type="email" autocomplete="email"></label>
+            <label>Device type<select name="deviceType" required><option value="">Choose device</option><option>Laptop</option><option>Phone</option><option>Tablet</option><option>Other</option></select></label>
+            <label>Device model<input name="model" placeholder="e.g. Galaxy S22" required></label>
+            <label class="full-width">Problem description<textarea name="problem" rows="4" placeholder="Describe the issue you are experiencing" required></textarea></label>
+            <button class="primary-button full-width" type="submit">Send repair request <span>→</span></button>
+          </form>
+          <p id="customer-form-message" class="message" role="status"></p>
+        </section>
+        <section class="panel">
+          <div class="section-heading"><div><p class="eyebrow">TICKET LOOKUP</p><h2>Track a repair</h2></div></div>
+          <form id="customer-lookup-form" class="lookup-form">
+            <label for="customer-ticket-lookup">Enter your ticket number</label>
+            <div class="inline-form"><input id="customer-ticket-lookup" required placeholder="e.g. RWM-123456"><button class="secondary-button" type="submit">Track repair</button></div>
+            <details><summary>Find by phone number instead</summary><input id="customer-phone-lookup" type="tel" placeholder="Phone number"></details>
+          </form>
+          <div id="customer-ticket-results" class="ticket-stack"><p class="empty-state">Your tickets and repair updates will appear here.</p></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="technician-view" class="view" hidden>
+      <div class="page-heading"><div><p class="eyebrow">TECHNICIAN WORKSPACE</p><h1>Repair workboard</h1><p>Review incoming work, prepare estimates, and keep customers informed.</p></div><span id="technician-open-count" class="count-pill">0 open tickets</span></div>
+      <div class="two-column technician-layout">
+        <section class="panel"><div class="section-heading"><div><p class="eyebrow">WORK QUEUE</p><h2>Service tickets</h2></div></div><div id="technician-ticket-list" class="ticket-stack"><p class="empty-state">No tickets yet. Customer requests will appear here.</p></div></section>
+        <section class="panel"><div class="section-heading"><div><p class="eyebrow">TICKET WORKSPACE</p><h2>Diagnosis &amp; estimate</h2></div></div>
+          <form id="technician-form" class="form-grid">
+            <label class="full-width">Select ticket<select id="technician-ticket-select" name="ticketId" required><option value="">Choose a ticket</option></select></label>
+            <div id="technician-customer-summary" class="full-width info-box">Select a ticket to see the customer and device details.</div>
+            <label class="full-width">Technical diagnosis<textarea name="diagnosis" rows="3" placeholder="What did you find during inspection?"></textarea></label>
+            <label>Parts cost<input name="partsCost" type="number" min="0" step="0.01" value="0"></label>
+            <label>Labour cost<input name="labourCost" type="number" min="0" step="0.01" value="0"></label>
+            <label class="full-width">Expected completion date<input name="deadline" type="date"></label>
+            <button class="primary-button full-width" type="submit">Send estimate to customer <span>→</span></button>
+          </form>
+          <p class="helper-text">Sending an estimate changes the ticket to “Awaiting customer approval.”</p>
+          <hr>
+          <form id="progress-form" class="form-grid">
+            <label class="full-width">Progress report<textarea name="progressReport" rows="3" placeholder="Update the customer on repair progress"></textarea></label>
+            <label class="full-width">Repair stage<select name="status"><option>Received</option><option>Diagnosed</option><option>Awaiting customer approval</option><option>In Repair</option><option>Ready for Pickup</option><option>Completed</option></select></label>
+            <button class="secondary-button full-width" type="submit">Save progress update</button>
+          </form>
+          <p id="technician-message" class="message" role="status"></p>
+        </section>
+      </div>
+    </section>
+
+    <section id="admin-view" class="view" hidden>
+      <div class="page-heading"><div><p class="eyebrow">ADMINISTRATION</p><h1>Workshop overview</h1><p>A clear view of every customer request, repair, and estimate.</p></div><button id="export-tickets" class="secondary-button" type="button">Export records</button></div>
+      <div class="metrics-grid">
+        <article class="metric-card"><span>Total tickets</span><strong id="admin-total">0</strong><small>All service requests</small></article>
+        <article class="metric-card"><span>Active repairs</span><strong id="admin-active">0</strong><small>Work in progress</small></article>
+        <article class="metric-card"><span>Awaiting approval</span><strong id="admin-pending">0</strong><small>Customer decision needed</small></article>
+        <article class="metric-card"><span>Completed</span><strong id="admin-completed">0</strong><small>Repairs completed</small></article>
+      </div>
+      <section class="panel admin-table-panel"><div class="section-heading"><div><p class="eyebrow">SERVICE RECORDS</p><h2>All tickets</h2></div><input id="admin-search" class="table-search" type="search" placeholder="Search tickets"></div>
+        <div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Customer</th><th>Device</th><th>Problem</th><th>Stage</th><th>Approval</th><th>Estimate</th><th>Deadline</th></tr></thead><tbody id="admin-ticket-rows"><tr><td colspan="8" class="empty-state">No service tickets recorded yet.</td></tr></tbody></table></div>
       </section>
-      <section>
-        <h2>Service Tickets</h2>
-        <label for="ticket-search">Search tickets</label>
-        <input id="ticket-search" type="search" placeholder="Ticket ID, customer, or device">
-        <label for="status-filter">Filter by status</label>
-<select id="status-filter">
-  <option value="">All statuses</option>
-  <option value="Received">Received</option>
-  <option value="Diagnosed">Diagnosed</option>
-  <option value="Awaiting Approval">Awaiting Approval</option>
-  <option value="In Repair">In Repair</option>
-  <option value="Completed">Completed</option>
-</select>
-        <ul id="ticket-list"></ul>
-        <p id="form-message" role="status"></p>
-      </section>
+      <p class="admin-footnote">Admin records are available in this browser’s local storage.</p>
+    </section>
   </main>
+  <footer><span>Repair Workshop Management</span><span>Customer care · Technician work · Admin overview</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
